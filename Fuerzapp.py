@@ -340,11 +340,12 @@ menu = st.session_state.get("menu", "Inicio")
 ####################################################### # Selector de tema (ya se aplica al inicio si no hay usuario)
 #######################################################
 # Si el usuario ya está logueado, el selector de tema se muestra en el sidebar
-if st.session_state.usuario:
-    # Selector de tema
-    tema = st.sidebar.selectbox("Selecciona un tema", ["Oscuro", "Claro"])
-    # Aplicar tema
-    aplicar_tema(tema)
+# ESTE BLOQUE ES EL QUE CAUSABA EL ERROR DE DUPLICIDAD Y DEBE SER ELIMINADO
+# if st.session_state.usuario:
+#     # Selector de tema
+#     tema = st.sidebar.selectbox("Selecciona un tema", ["Oscuro", "Claro"])
+#     # Aplicar tema
+#     aplicar_tema(tema)
 
 
 #######################################################

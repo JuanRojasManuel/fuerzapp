@@ -1,4 +1,3 @@
-###########################################################################################################################
 # fuerzaapp.py
 ###########################################################################################################################
 # Necesidades:
@@ -41,6 +40,73 @@ os.makedirs("perfiles", exist_ok=True)
 
 # --- Funcion de graficas
 import plotly.express as px
+
+#######################################################
+####################################################### Diseño de sitio (aplicar tema) - MOVIDO AQUÍ
+#######################################################
+def aplicar_tema(tema):
+    """
+    Aplica estilos CSS para cambiar el tema de la aplicación.
+    """
+    if tema == "Oscuro":
+        st.markdown("""
+            <style>
+                body,header,button {
+                    background-color: #121212!important;
+                    color: #ffffff!important;
+                }
+                .stApp {
+                    background-color: #121212!important;
+                }
+                h1, h2, h3, h4, h5, h6, p {
+                    color: #ffffff!important;
+                }
+                .stSidebar, .css-1d391kg {
+                    background-color: #1f1f1f !important;
+                }
+                div.stButton > button {
+                    width: 100%;
+                    height: 3rem;
+                    font-size: 1.1rem;
+                    margin-bottom: 8px;
+                    color: #ffffff!important;
+                }
+            </style>
+        """, unsafe_allow_html=True)
+    elif tema == "Claro":
+        st.markdown("""
+            <style>
+                body,header,button {
+                    background-color: #f5f5f5!important;
+                    color: #000000!important;
+                }
+                .stApp {
+                    background-color: #f5f5f5!important;
+                }
+                h1, h2, h3, h4, h5, h6, p {
+                    color: #000000!important;
+                }
+                .stSidebar, .css-1d391kg {
+                    background-color: #e0e0e0 !important;
+                }
+                div.stButton > button {
+                    width: 100%;
+                    height: 3rem;
+                    font-size: 1.1rem;
+                    margin-bottom: 8px;
+                }
+            </style>
+        """, unsafe_allow_html=True)
+
+# --- sesión tema - MOVIDO AQUÍ
+if "tema" not in st.session_state:
+    st.session_state.tema = "Claro"
+
+# Selector de tema - MOVIDO AQUÍ
+tema = st.sidebar.selectbox("Selecciona un tema", ["Oscuro", "Claro"])
+# Aplicar tema - MOVIDO AQUÍ
+aplicar_tema(tema)
+
 
 ###########################################################################################################################
 # Back End
@@ -124,72 +190,6 @@ if "usuario" not in st.session_state:
 
 # Si el usuario no está logueado en la sesión actual, muestra el login/registro
 if st.session_state.usuario is None:
-    #######################################################
-    ####################################################### Diseño de sitio (aplicar tema)
-    #######################################################
-    def aplicar_tema(tema):
-        """
-        Aplica estilos CSS para cambiar el tema de la aplicación.
-        """
-        if tema == "Oscuro":
-            st.markdown("""
-                <style>
-                    body,header,button {
-                        background-color: #121212!important;
-                        color: #ffffff!important;
-                    }
-                    .stApp {
-                        background-color: #121212!important;
-                    }
-                    h1, h2, h3, h4, h5, h6, p {
-                        color: #ffffff!important;
-                    }
-                    .stSidebar, .css-1d391kg {
-                        background-color: #1f1f1f !important;
-                    }
-                    div.stButton > button {
-                        width: 100%;
-                        height: 3rem;
-                        font-size: 1.1rem;
-                        margin-bottom: 8px;
-                        color: #ffffff!important;
-                    }
-                </style>
-            """, unsafe_allow_html=True)
-        elif tema == "Claro":
-            st.markdown("""
-                <style>
-                    body,header,button {
-                        background-color: #f5f5f5!important;
-                        color: #000000!important;
-                    }
-                    .stApp {
-                        background-color: #f5f5f5!important;
-                    }
-                    h1, h2, h3, h4, h5, h6, p {
-                        color: #000000!important;
-                    }
-                    .stSidebar, .css-1d391kg {
-                        background-color: #e0e0e0 !important;
-                    }
-                    div.stButton > button {
-                        width: 100%;
-                        height: 3rem;
-                        font-size: 1.1rem;
-                        margin-bottom: 8px;
-                    }
-                </style>
-            """, unsafe_allow_html=True)
-
-    # --- sesión tema
-    if "tema" not in st.session_state:
-        st.session_state.tema = "Claro"
-
-    # Selector de tema
-    tema = st.sidebar.selectbox("Selecciona un tema", ["Oscuro", "Claro"])
-    aplicar_tema(tema)
-
-
     st.title("FuerzApp - Iniciar sesión o registrarse")
     opcion = st.radio("Seleccioná una opción", ["Iniciar sesión", "Registrarse"])
 

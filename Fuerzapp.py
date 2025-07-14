@@ -25,6 +25,20 @@ from datetime import date
 
 # --- Configuración de página ---
 st.set_page_config(page_title="FuerzApp", page_icon="💪", layout="wide")
+
+#######################################################
+####################################################### Avatares (adaptado para la ruta en el repo)
+#######################################################
+# Avatares predeterminados
+AVATAR_OPCIONES = {
+    "Avatar 1": "perfiles/avatar1.png",
+    "Avatar 2": "perfiles/avatar2.png",
+    "Avatar 3": "perfiles/avatar3.png"
+}
+
+# Asegurar carpeta para fotos (esto solo es relevante localmente, en Streamlit Cloud es efímero)
+os.makedirs("perfiles", exist_ok=True)
+
 # --- Funcion de graficas
 import plotly.express as px
 
@@ -110,19 +124,6 @@ if "usuario" not in st.session_state:
 
 # Si el usuario no está logueado en la sesión actual, muestra el login/registro
 if st.session_state.usuario is None:
-    #######################################################
-    ####################################################### Avatares (adaptado para la ruta en el repo)
-    #######################################################
-    # Avatares predeterminados
-    AVATAR_OPCIONES = {
-        "Avatar 1": "perfiles/avatar1.png",
-        "Avatar 2": "perfiles/avatar2.png",
-        "Avatar 3": "perfiles/avatar3.png"
-    }
-
-    # Asegurar carpeta para fotos (esto solo es relevante localmente, en Streamlit Cloud es efímero)
-    os.makedirs("perfiles", exist_ok=True)
-
     #######################################################
     ####################################################### Diseño de sitio (aplicar tema)
     #######################################################
